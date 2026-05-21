@@ -1,0 +1,33 @@
+package com.foodie.resturants.Entity;
+
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+
+@Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class User {
+
+    @Id
+    private Long id;
+
+    private String name;
+    private String email;
+    private String password;
+    private String role;
+    private String phone;
+    private String address;
+    private String city;
+    private String state;
+    private String zip;
+    private String country;
+
+}
