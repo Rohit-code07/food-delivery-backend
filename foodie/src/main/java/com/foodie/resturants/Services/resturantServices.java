@@ -14,7 +14,7 @@ public class resturantServices {
     @Autowired
     private resturantsrepo  resturantsRepo;
 
-    public resturantdto Usersave(resturantdto resturantDTO){
+    public resturant UserSave(resturantdto resturantDTO){
       return resturantsRepo.save(convertDtoToEntity(resturantDTO));
 
     }

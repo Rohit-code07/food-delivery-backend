@@ -2,7 +2,7 @@
 <module version="4">
   <component name="AdditionalModuleElements">
     <content url="file://$MODULE_DIR$">
-      <excludeFolder url="file://$MODULE_DIR$/resturants/src/main/java/com/foodie/resturants/Services/Implmentation" />
+      <excludeFolder url="file://$MODULE_DIR$/foodie/src/main/java/com/foodie/resturants/Services/Implmentation" />
     </content>
   </component>
 </module>
