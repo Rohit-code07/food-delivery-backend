@@ -14,8 +14,9 @@ public class resturantServices {
     @Autowired
     private resturantsrepo  resturantsRepo;
 
-    public resturant UserSave(resturantdto resturantDTO){
-      return resturantsRepo.save(convertDtoToEntity(resturantDTO));
+    public resturantdto UserSave(resturantdto resturantDTO){
+      resturant saveResturant= resturantsRepo.save(convertDtoToEntity(resturantDTO));
+      return convertEntityToDto(saveResturant);
 
     }
     public resturant convertDtoToEntity(resturantdto resturantDTO){
@@ -35,5 +36,23 @@ public class resturantServices {
         resturant.setMenu(resturantDTO.getMenu());
 
         return resturant;
+    }
+    public resturantdto convertEntityToDto(resturant resturant) {
+
+        resturantdto resturantDTO = new resturantdto();
+
+        resturantDTO.setId(resturant.getId());
+        resturantDTO.setName(resturant.getName());
+        resturantDTO.setEmail(resturant.getEmail());
+        resturantDTO.setPassword(resturant.getPassword());
+        resturantDTO.setPhone(resturant.getPhone());
+        resturantDTO.setAddress(resturant.getAddress());
+        resturantDTO.setCity(resturant.getCity());
+        resturantDTO.setState(resturant.getState());
+        resturantDTO.setZip(resturant.getZip());
+        resturantDTO.setCountry(resturant.getCountry());
+        resturantDTO.setMenu(resturant.getMenu());
+
+        return resturantDTO;
     }
 }
