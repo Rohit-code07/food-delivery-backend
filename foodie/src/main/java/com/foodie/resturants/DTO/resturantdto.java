@@ -10,7 +10,7 @@ import java.util.List;
 @Setter
 public class resturantdto {
     @Id
-    private Long Id;
+    private Long id;
     private String name;
     private String email;
     private String password;

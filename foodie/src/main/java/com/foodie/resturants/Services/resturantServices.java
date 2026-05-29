@@ -4,9 +4,16 @@ import com.foodie.resturants.DTO.resturantdto;
 import com.foodie.resturants.Entity.resturant;
 import com.foodie.resturants.Repositries.resturantsrepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class resturantServices {
@@ -18,6 +25,25 @@ public class resturantServices {
       resturant saveResturant= resturantsRepo.save(convertDtoToEntity(resturantDTO));
       return convertEntityToDto(saveResturant);
 
+    }
+
+    public Page<resturantdto> getAll(Pageable pageable) {
+
+        Page<resturant> resturants = resturantsRepo.findAll(pageable);
+
+        return resturants.map(this::convertEntityToDto);
+    }
+
+    public List<resturantdto> getResturantByName(String resturantName) {
+
+       List <resturant> restaurant = resturantsRepo.findByName(resturantName);
+
+        List<resturantdto> dtos = restaurant.stream()
+                .map(this::convertEntityToDto)
+                .collect(Collectors.toList());
+
+
+        return dtos;
     }
     public resturant convertDtoToEntity(resturantdto resturantDTO){
 
@@ -55,4 +81,6 @@ public class resturantServices {
 
         return resturantDTO;
     }
+
+
 }
