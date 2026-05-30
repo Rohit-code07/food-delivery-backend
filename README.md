@@ -36,7 +36,7 @@ It provides REST APIs for managing users, restaurants, menus, and orders.
 ## 📁 Project Structure
 
 ```bash
-src/main/java/com/dineflow
+src/main/java/com/foodie
 │
 ├── Controller
 ├── Services
@@ -55,13 +55,14 @@ src/main/java/com/dineflow
 Clone the project
 
 ```bash
-git clone https://github.com/your-username/DineFlow.git
+git clone https://github.com/your-username/
+food-delivery-backend.git
 ```
 
 Move into project directory
 
 ```bash
-cd DineFlow
+cd food-delivery-backend
 ```
 
 Run the application
