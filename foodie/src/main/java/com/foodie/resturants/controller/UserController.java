@@ -1,10 +1,9 @@
 package com.foodie.resturants.controller;
 
 import com.foodie.resturants.DTO.Userdto;
-import com.foodie.resturants.Services.UserService;
+import com.foodie.resturants.Services.IMPL.UserServiceimpl;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,9 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
 
-    private UserService userService;
+    private UserServiceimpl userService;
 
-    public UserController(UserService userService) {
+    public UserController(UserServiceimpl userService) {
         this.userService = userService;
     }
     @PostMapping

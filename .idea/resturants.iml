@@ -3,6 +3,7 @@
   <component name="AdditionalModuleElements">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/foodie/src/main/java/com/foodie/resturants/Services/Implmentation" />
+      <excludeFolder url="file://$MODULE_DIR$/foodie/src/main/java/com/foodie/resturants/Services/implments" />
     </content>
   </component>
 </module>

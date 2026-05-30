@@ -1,9 +1,7 @@
 package com.foodie.resturants.controller;
 
 import com.foodie.resturants.DTO.resturantdto;
-import com.foodie.resturants.Entity.resturant;
-import com.foodie.resturants.Services.UserService;
-import com.foodie.resturants.Services.resturantServices;
+import com.foodie.resturants.Services.IMPL.resturantServicesimpl;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -17,15 +15,15 @@ import java.util.List;
 @RequestMapping("/api/v1/resturant")
 public class resturantController {
 
-    private resturantServices resturantServices1;
+    private resturantServicesimpl resturantServices1;
 
-    public resturantController(resturantServices ResturantServices) {
+    public resturantController(resturantServicesimpl ResturantServices) {
        this.resturantServices1= ResturantServices;
     }
 
     @PostMapping
     public ResponseEntity<resturantdto> creatResturant(@RequestBody  resturantdto resturantDTO) {
-       resturantServices1.UserSave(resturantDTO);
+       resturantServices1.saveResturant(resturantDTO);
         return ResponseEntity.ok(resturantDTO);
     }
     @GetMapping("/getAll")
@@ -36,16 +34,32 @@ public class resturantController {
         Sort sort=sortDir.equalsIgnoreCase("asc")?Sort.by(sortBy).ascending():Sort.by(sortBy).descending();
         Pageable pageable= PageRequest.of(page,size,sort);
 
-      return ResponseEntity.ok(resturantServices1.getAll(pageable));
+      return ResponseEntity.ok(resturantServices1.getResturants(pageable));
 
     }
     @GetMapping("/AllResturant/{resturantName}")
-    public ResponseEntity<List<resturantdto>> getResturantServices1(
+    public ResponseEntity<Page<resturantdto>> getResturantByName(
+            @RequestParam(value = "page",required = false,defaultValue = "0")int page,
+            @RequestParam(value="size",required = false,defaultValue = "10")int size,
+            @RequestParam(value="sortDir",required = false,defaultValue = "asc")String sortDir,
+            @RequestParam(value="sortBy",required = false,defaultValue = "name")String sortBy,
             @PathVariable String resturantName) {
-
-        List<resturantdto> restaurantDTOs =
-                resturantServices1.getResturantByName(resturantName);
+         Sort sort=sortDir.equalsIgnoreCase("asc")?Sort.by(sortBy).ascending():Sort.by(sortBy).descending();
+         Pageable pageable= PageRequest.of(page, size,sort);
+         Page<resturantdto> restaurantDTOs = resturantServices1.searchResturantByName(pageable,resturantName);
 
         return ResponseEntity.ok(restaurantDTOs);
+    }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<resturantdto> delete(@PathVariable long id){
+
+       resturantdto dto= resturantServices1.findById(id);
+        resturantServices1.deleteResturantById(id);
+        return ResponseEntity.ok(dto);
+    }
+    @PutMapping
+    public ResponseEntity<resturantdto> updateResturant(@RequestBody resturantdto dto) {
+        resturantServices1.updateResturant(dto);
+        return ResponseEntity.ok(dto);
     }
 }

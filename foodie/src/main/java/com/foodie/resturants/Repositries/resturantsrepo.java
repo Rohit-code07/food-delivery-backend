@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 public interface resturantsrepo extends JpaRepository<resturant,Long> {
-
+public resturant findById(long id);
     public resturant save(resturant resturant);
-    public List<resturant> findByName(String resturantName);
+    public Page<resturant> findByName(Pageable pageable,String resturantName);
 }
