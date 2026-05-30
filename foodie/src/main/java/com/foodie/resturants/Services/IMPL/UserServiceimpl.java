@@ -21,19 +21,19 @@ public  class UserServiceimpl implements UserService {
 
 // User Save
     @Override
-    public void save(User user) {
-        userrepo.save(user);
+    public void save(Userdto user) {
+        userrepo.save(convertDtoToEntity(user));
     }
 // Update User
-    @Override
-    public void update(User user) {
-   userrepo.save(user);
+
+    public void update(Userdto user) {
+   userrepo.save(convertDtoToEntity(user));
     }
 
 // Delete User
-    @Override
-    public void delete(User user) {
-      userrepo.delete(user);
+
+    public void delete(Userdto user) {
+      userrepo.delete(convertDtoToEntity(user));
     }
 
 //Find All User
@@ -46,8 +46,8 @@ public  class UserServiceimpl implements UserService {
     }
 //Get User by name
     @Override
-    public Page<Userdto> getUsersByUserName(String username, Pageable pageable) {
-        Page<User> NamedUser=userrepo.findByName(username,pageable);
+    public Page<Userdto> getUsersByUserName(String name, Pageable pageable) {
+        Page<User> NamedUser=userrepo.findByName(name,pageable);
         return NamedUser.map(this::convertEntityToDto);
     }
 // DTO -> Entity

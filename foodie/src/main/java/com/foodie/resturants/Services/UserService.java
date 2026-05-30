@@ -8,9 +8,9 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface UserService {
-    public void save(User user);
-    public void update(User user);
-    public void delete(User user);
+    public void save(Userdto user);
+    public void update(Userdto user);
+    public void delete(Userdto user);
     public Page<Userdto> findAllUsers(Pageable pageable);
     public Page<Userdto> getUsersByUserName(String username,Pageable pageable);
 
