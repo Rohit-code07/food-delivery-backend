@@ -1,12 +1,13 @@
 package com.foodie.resturants.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.List;
 
 @Entity
@@ -16,16 +17,19 @@ import java.util.List;
 @NoArgsConstructor
 public class resturant {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String email;
-    private String password;
-    private String phone;
     private String address;
-    private String city;
-    private String state;
-    private String zip;
     private String country;
-    private List<String> menu;
+    private boolean OpenNow;
+    private LocalTime OpenTime;
+    private LocalTime CloseTime;
+    private String image;
+    @ManyToOne
+    @JoinColumn(name = "created_by")
+    private User ADMIN;
+    @OneToMany
+    private List<FoodItem> foodItems;
+
 
 }

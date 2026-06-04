@@ -4,6 +4,7 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalTime;
 import java.util.List;
 
 @Getter
@@ -20,5 +21,7 @@ public class resturantdto {
     private String state;
     private String zip;
     private String country;
-    private List<String> menu;
+    private LocalTime startTime;
+    private LocalTime endTime;
+    private String image;
 }

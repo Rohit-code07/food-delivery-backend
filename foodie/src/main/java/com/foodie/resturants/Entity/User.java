@@ -1,14 +1,14 @@
 package com.foodie.resturants.Entity;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.foodie.resturants.Enum.role;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -24,12 +24,11 @@ public class User {
     private String name;
     private String email;
     private String password;
-    private String role;
     private String phone;
     private String address;
-    private String city;
-    private String state;
-    private String zip;
-    private String country;
-
+    @Enumerated(EnumType.STRING)
+    private role role;
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+    private boolean isAvailable;
 }
